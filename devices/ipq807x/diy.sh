@@ -21,6 +21,10 @@ svn co https://github.com/Boos4721/openwrt/trunk/target/linux/ipq807x/patches-5.
 
 curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/package/kernel/linux/modules/netsupport.mk -o package/kernel/linux/modules/netsupport.mk
 
+curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/target/linux/generic/config-5.15 -o target/linux/generic/config-5.15
+
+curl -sfL https://raw.githubusercontent.com/Boos4721/openwrt/master/target/linux/ipq807x/config-5.15 -o target/linux/ipq807x/config-5.15
+
 sed -i 's/DEFAULT_PACKAGES +=/DEFAULT_PACKAGES += luci-app-turboacc/' target/linux/ipq807x/Makefile
 
 echo '
@@ -46,5 +50,4 @@ CONFIG_CPU_FREQ_GOV_USERSPACE=y
 CONFIG_CPU_FREQ_GOV_ONDEMAND=y
 CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
 CONFIG_MOTORCOMM_PHY=y
-CONFIG_INPUT_PM8941_PWRKEY=n
 ' >> ./target/linux/ipq807x/config-5.15
