@@ -210,7 +210,6 @@ jobs:
         ccache: 'true'
         clean: ${{ contains(github.event.action, 'nocache') }}
         prefix: ${{ github.workspace }}/openwrt
-        skip_saving: 'false'
     
     - name: Compile the firmware
       id: compile
