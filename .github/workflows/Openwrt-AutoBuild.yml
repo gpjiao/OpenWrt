@@ -222,9 +222,7 @@ jobs:
     - name: Check space usage
       run: |
         shopt -s extglob
-        ls openwrt/staging_dir
-        ls openwrt/build_dir
-        rm -rf openwrt/staging_dir/!(*${{ env.MTARGET }}*|host) openwrt/build_dir/!(*${{ env.MTARGET }}*|host|hostpkg)
+        rm -rf openwrt/staging_dir/!(*${{ env.MTARGET }}*|host|hostpkg) openwrt/build_dir/!(*${{ env.MTARGET }}*|host|hostpkg)
         df -hT
     
     - name: Compile the firmware
