@@ -222,6 +222,7 @@ jobs:
     
     - name: Check space usage
       run: |
+        shopt -s extglob
         rm -rf openwrt/staging_dir/!(*${{ env.MTARGET }}*|host)
         df -hT
     
