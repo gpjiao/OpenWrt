@@ -147,7 +147,16 @@ jobs:
         fi
         fi
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
-        
+
+    - name: Free up disk space
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo mkdir -p -m 777 /mnt/openwrt/dl /mnt/openwrt/bin /mnt/openwrt/staging_dir
+        ln -sf /mnt/openwrt/dl openwrt/dl
+        ln -sf /mnt/openwrt/bin openwrt/bin
+        ln -sf /mnt/openwrt/staging_dir openwrt/staging_dir
+
     - name: Load custom configuration
       run: |
         cp -rf devices/common/. openwrt/
@@ -195,15 +204,6 @@ jobs:
     - name: SSH connection to Actions
       uses: kiddin9/debugger-action@master
       if: contains(github.event.action, 'ssh')
-
-    - name: Free up disk space
-      env:
-        DEBIAN_FRONTEND: noninteractive
-      run: |
-        sudo mkdir -p -m 777 /mnt/openwrt/dl /mnt/openwrt/bin /mnt/openwrt/staging_dir
-        ln -sf /mnt/openwrt/dl openwrt/dl
-        ln -sf /mnt/openwrt/bin openwrt/bin
-        ln -sf /mnt/openwrt/staging_dir openwrt/staging_dir
 
     - name: Download package
       id: package
