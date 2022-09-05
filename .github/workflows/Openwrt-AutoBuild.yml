@@ -200,10 +200,10 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        sudo mkdir -p -m 777 /mnt/openwrt/dl /mnt/openwrt/bin /mnt/openwrt/build_dir/hostpkg openwrt/build_dir
+        sudo mkdir -p -m 777 /mnt/openwrt/dl /mnt/openwrt/bin /mnt/openwrt/staging_dir
         ln -sf /mnt/openwrt/dl openwrt/dl
         ln -sf /mnt/openwrt/bin openwrt/bin
-        ln -sf /mnt/openwrt/build_dir/hostpkg openwrt/build_dir/hostpkg
+        ln -sf /mnt/openwrt/staging_dir openwrt/staging_dir
 
     - name: Download package
       id: package
